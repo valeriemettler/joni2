@@ -2,13 +2,6 @@
 var d = {};
 var woof = function(action, name, score) {
 
-    //if add and undefined
-    // if (action === "add" && d[name] === null) {
-    //     debug("first if statement");
-    //     d[name];
-    //     d[name] = "";
-    //     return d[name];
-    // }
     //if add and defined
     if (action === "add"){
         d[name] = score;

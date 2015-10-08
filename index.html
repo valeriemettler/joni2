@@ -1,0 +1,96 @@
+<script>
+//action--add and get
+var d = {};
+var currentNote;
+var highestTime;
+var lowestTime;
+var woof = function(action, time, note) {
+
+    if (action === "add") {
+        console.log(time);
+        highestTime = time;
+        // if (time > highestTime) {
+        //     console.log("triggered time");
+        //     lowestTime = highestTime;
+        //     highestTime = time; //higesttime is 8
+        // }
+
+        // if (time <= lowestTime) {
+        //     lowestTime = highestTime;
+        // }
+
+
+
+        d[time];
+        d[time] = note;
+        currentNote = d[time];
+        //console.log("add", d, currentNote);
+        return d[time];
+    } else if (action === "get") {
+
+        if (d[time] === undefined && time > highestTime) {
+            d[time] = "";
+            return d[time];
+        } else if (d[time] === undefined && time < highestTime) {
+            d[time] = currentNote;
+            // console.log(d);
+            return d[time];
+        } else if (d[time] !== undefined && time === highestTime) {
+            return d[time];
+        } else if (d[time] !== undefined && time > highestTime) {
+            return d[time];
+        }else if (d[time] !== undefined && time < highestTime) {
+            d[time] = currentNote;
+            return d[time];
+        }
+        //console.log("just get", time);
+    }
+};
+var test = function() {
+    // console.log([-2, woof("get", 5) == ""]);
+    // console.log([-1, woof("get", 0) == ""]);
+    console.log([0, woof("add", 5, "hello") == "hello"]);
+    console.log([1, woof("get", 0) == "hello"]);
+    console.log([2, woof("get", 1) == "hello"]);
+    console.log([3, woof("get", 2) == "hello"]);
+    console.log([4, woof("get", 3) == "hello"]);
+    console.log([5, woof("get", 4) == "hello"]);
+    console.log([6, woof("get", 5) == "hello"]);
+    console.log([7, woof("get", 6) == ""]);
+
+    console.log([8, woof("add", 4, "hi") == "hi"]);
+
+    console.log([9, woof("get", 0) == "hi"]);
+    console.log([10, woof("get", 1) == "hi"]);
+    console.log([11, woof("get", 2) == "hi"]);
+    console.log([12, woof("get", 3) == "hi"]);
+    console.log([13, woof("get", 4) == "hi"]);
+    console.log([14, woof("get", 5) == "hello"]);
+    console.log([15, woof("get", 6) == ""]);
+    console.log([16, currentNote, woof("add", 2, "meow") == "meow"]);
+    console.log([17, currentNote, woof("get", 0) == "meow"]);
+    console.log([18, currentNote, woof("get", 1) == "meow"]);
+    console.log([19, currentNote, woof("get", 2) == "meow"]);
+
+    console.log([20, currentNote, woof("get", 3) == "hi"]);
+    console.log([21, currentNote, woof("get", 4) == "hi"]);
+
+    console.log([22, currentNote, woof("get", 5) == "hello"]);
+    console.log([23, currentNote, woof("get", 6) == ""]);
+
+    console.log([24, currentNote, d, woof("add", 8, "yo") == "yo"]); //adding a note at future time
+
+    console.log([25, currentNote, d, woof("get", 0) == "meow"]);
+    // console.log([26, woof("get", 1) == "meow"]);
+    // console.log([27, woof("get", 2) == "meow"]);
+    // console.log([28, woof("get", 3) == "hi"]);
+    // console.log([29, woof("get", 4) == "hi"]);
+    // console.log([30, woof("get", 5) == "hello"]);
+
+    // console.log([31, woof("get", 6) == "yo"]);
+    // console.log([32, woof("get", 7) == "yo"]); //
+    // console.log([33, woof("get", 8) == "yo"]);
+    // console.log([34, woof("get", 9) == ""]);
+};
+test();
+</script>
